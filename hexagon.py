@@ -1,20 +1,11 @@
 import h3 as h3
+import numpy as np
 import pandas as pd
-
-
-'''
-listing 데이터로 할 수 있음
-    accomodation 별 위경도 좌표를 확인한뒤
-    accomodation 이 속하는 hexagon ID를 attach
-
-calendar 데이터의 subset으로 할 수 있음
-    hexagon별 평균가격을 구하는 데 정보유출 경계해서 뺄 것
-'''
 
 
 def load_listings():
     data = pd.read_csv('./data/listings.csv')
-    return data['id'], data[['latitude', 'longitude']]
+    return data['id'], data[['latitude', 'longitude']].values
 
 
 def get_hexagons_from_coodinates(coordinates: np.array, resolution: int = 8):
@@ -25,25 +16,28 @@ def get_hexagons_from_coodinates(coordinates: np.array, resolution: int = 8):
     :return: Hexagon ids
     """
     hexagons = []
-
     for x, y in coordinates:
         hexagon_id = h3.geo_to_h3(x, y, resolution=resolution)
         hexagons.append(hexagon_id)
-
     return np.array(hexagons)
 
 
-
-
-
-data = load_listings()
-get_hexagons_from_coodinates(data[['latitude', 'longitude']].values)
+def attach_hexagon_id(id, hexagons):
+    """
+    accommodation id 별 Hexagon id를 mapping하여 pd.Series로 return
+    :param id: accommodation ids
+    :param hexagons: hexagon id for each accommodation
+    :return: pd.Series
+    """
+    return pd.Series(hexagons, index=id, name='hexagons')
 
 
 def main():
-    print(listings.shape)
+    id, coordinates = load_listings()
+    hexagons = get_hexagons_from_coodinates(coordinates)
+    result = attach_hexagon_id(id, hexagons)
+    result.to_pickle('./preprocessed/hexagon_ids.pkl')
 
 
 if __name__ == '__main__':
     main()
-
