@@ -44,7 +44,7 @@ def main():
     subset = load_reservation_history()
     vacant_days = get_vacant_days(subset)
     problematic_id = get_problematic_accommodations(vacant_days, 5.5)
-    with open('./preprocessed/problematic_accommodatios.pkl', 'wb') as f:
+    with open('./preprocessed/problematic_accommodations.pkl', 'wb') as f:
         pickle.dump(problematic_id, f)
 
 

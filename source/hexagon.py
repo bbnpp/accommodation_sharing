@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def load_listings():
-    data = pd.read_csv('./data/listings.csv')
+    data = pd.read_csv('../data/listings.csv')
     return data['id'], data[['latitude', 'longitude']].values
 
 

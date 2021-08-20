@@ -6,8 +6,8 @@ def load_data():
     Get price and hexagon id for each accommodation ID
     :return: pd.DataFrame
     """
-    listings = pd.read_csv('./data/listings.csv')[['id', 'price']]
-    hexagon_ids = pd.read_pickle('./data/hexagon_ids.pkl')
+    listings = pd.read_csv('../data/listings.csv')[['id', 'price']]
+    hexagon_ids = pd.read_pickle('../data/hexagon_ids.pkl')
     return pd.merge(listings, hexagon_ids, left_on='id', right_index=True)
 
 
