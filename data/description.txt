@@ -1,0 +1,9 @@
+DataSource : http://insideairbnb.com/barcelona/
+List
+    07 July, 2021	Barcelona	listings.csv.gz	Detailed Listings data for Barcelona
+    07 July, 2021	Barcelona	calendar.csv.gz	Detailed Calendar Data for listings in Barcelona
+    07 July, 2021	Barcelona	reviews.csv.gz	Detailed Review Data for listings in Barcelona
+    07 July, 2021	Barcelona	listings.csv	Summary information and metrics for listings in Barcelona (good for visualisations).
+    07 July, 2021	Barcelona	reviews.csv	Summary Review data and Listing ID (to facilitate time based analytics and visualisations linked to a listing).
+    N/A	Barcelona	neighbourhoods.csv	Neighbourhood list for geo filter. Sourced from city or open source GIS files.
+    N/A	Barcelona	neighbourhoods.geojson	GeoJSON file of neighbourhoods of the city.
