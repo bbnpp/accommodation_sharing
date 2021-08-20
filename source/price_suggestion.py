@@ -11,13 +11,13 @@ def load_proper_prices():
 
 
 def perform_ensemble(lgbm, rf, nn):
-    concatenated = np.concatenate((lgbm, rf), axis=1)
+    concatenated = np.concatenate((lgbm, rf, nn), axis=1)
     return np.average(concatenated, axis=1)
 
 
 if __name__ == '__main__':
-    a, b, _ = load_proper_prices()
-    suggested_price = perform_ensemble(a, b, _)
+    a, b, c = load_proper_prices()
+    suggested_price = perform_ensemble(a, b, c)
     with open('./preprocessed/problematic_accommodations.pkl', 'rb') as f:
         accommodations_id = pickle.load(f)
     with open('./preprocessed/y_test.pkl', 'rb') as f:
